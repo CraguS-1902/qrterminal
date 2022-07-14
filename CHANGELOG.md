@@ -1,19 +1,3 @@
-## 3.0.0
-
-Adjust go.mod to include required version string
-
-## 2.0.1
-
-Add goreleaser and release to Homebrew and Github
-
-## 2.0.0
-
-Add a command line tool and QuietZone around QRCode
-
-## 1.0.1
-
-Add go.mod
-
 ## 1.0.0
 
 Update to add a quiet zone border to the QR Code - #5 and fixed by [WindomZ](https://github.com/WindomZ) #8

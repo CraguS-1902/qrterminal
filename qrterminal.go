@@ -42,7 +42,7 @@ func (c *Config) writeFullBlocks(w io.Writer, code *qr.Code) {
 
 	// Frame the barcode in a 1 pixel border
 	w.Write([]byte(stringRepeat(stringRepeat(white,
-		code.Size+c.QuietZone*2)+"\r\n", c.QuietZone))) // top border
+		code.Size+c.QuietZone*2)+"\n", c.QuietZone))) // top border
 	for i := 0; i <= code.Size; i++ {
 		w.Write([]byte(stringRepeat(white, c.QuietZone))) // left border
 		for j := 0; j <= code.Size; j++ {
@@ -52,10 +52,10 @@ func (c *Config) writeFullBlocks(w io.Writer, code *qr.Code) {
 				w.Write([]byte(white))
 			}
 		}
-		w.Write([]byte(stringRepeat(white, c.QuietZone-1) + "\r\n")) // right border
+		w.Write([]byte(stringRepeat(white, c.QuietZone-1) + "\n")) // right border
 	}
 	w.Write([]byte(stringRepeat(stringRepeat(white,
-		code.Size+c.QuietZone*2)+"\r\n", c.QuietZone-1))) // bottom border
+		code.Size+c.QuietZone*2)+"\n", c.QuietZone-1))) // bottom border
 }
 
 func (c *Config) writeHalfBlocks(w io.Writer, code *qr.Code) {
@@ -66,12 +66,12 @@ func (c *Config) writeHalfBlocks(w io.Writer, code *qr.Code) {
 	// Frame the barcode in a 4 pixel border
 	// top border
 	if c.QuietZone%2 != 0 {
-		w.Write([]byte(stringRepeat(bw, code.Size+c.QuietZone*2) + "\r\n"))
+		w.Write([]byte(stringRepeat(bw, code.Size+c.QuietZone*2) + "\n"))
 		w.Write([]byte(stringRepeat(stringRepeat(ww,
-			code.Size+c.QuietZone*2)+"\r\n", c.QuietZone/2)))
+			code.Size+c.QuietZone*2)+"\n", c.QuietZone/2)))
 	} else {
 		w.Write([]byte(stringRepeat(stringRepeat(ww,
-			code.Size+c.QuietZone*2)+"\r\n", c.QuietZone/2)))
+			code.Size+c.QuietZone*2)+"\n", c.QuietZone/2)))
 	}
 	for i := 0; i <= code.Size; i += 2 {
 		w.Write([]byte(stringRepeat(ww, c.QuietZone))) // left border
@@ -91,16 +91,16 @@ func (c *Config) writeHalfBlocks(w io.Writer, code *qr.Code) {
 				w.Write([]byte(wb))
 			}
 		}
-		w.Write([]byte(stringRepeat(ww, c.QuietZone-1) + "\r\n")) // right border
+		w.Write([]byte(stringRepeat(ww, c.QuietZone-1) + "\n")) // right border
 	}
 	// bottom border
 	if c.QuietZone%2 == 0 {
 		w.Write([]byte(stringRepeat(stringRepeat(ww,
-			code.Size+c.QuietZone*2)+"\r\n", c.QuietZone/2-1)))
-		w.Write([]byte(stringRepeat(wb, code.Size+c.QuietZone*2) + "\r\n"))
+			code.Size+c.QuietZone*2)+"\n", c.QuietZone/2-1)))
+		w.Write([]byte(stringRepeat(wb, code.Size+c.QuietZone*2) + "\n"))
 	} else {
 		w.Write([]byte(stringRepeat(stringRepeat(ww,
-			code.Size+c.QuietZone*2)+"\r\n", c.QuietZone/2)))
+			code.Size+c.QuietZone*2)+"\n", c.QuietZone/2)))
 	}
 }
 
